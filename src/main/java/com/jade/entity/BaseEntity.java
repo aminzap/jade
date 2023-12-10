@@ -1,10 +1,11 @@
 package com.jade.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
+@MappedSuperclass
 public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -12,10 +13,12 @@ public class BaseEntity {
     private Integer id;
     @Basic
     @Column(name="created")
-    private Date created;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String created;
     @Basic
     @Column(name = "modified")
-    private Date modified;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String modified;
     @Basic
     @Column(name = "status")
     private Boolean status;
@@ -28,19 +31,19 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
-    public Date getModified() {
+    public String getModified() {
         return modified;
     }
 
-    public void setModified(Date modified) {
+    public void setModified(String modified) {
         this.modified = modified;
     }
 

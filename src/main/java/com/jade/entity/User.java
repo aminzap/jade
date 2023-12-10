@@ -1,12 +1,16 @@
 package com.jade.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
+@Table(name = "user")
 public class User extends BaseEntity {
     @Basic
     @Column(name = "first_name")
@@ -24,8 +28,9 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
     @Basic
-    @Column
-    private Date birthDate;
+    @Column(name = "birth_date")
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String birthDate;
     @Basic
     @Column(name = "about")
     private String about;
@@ -35,7 +40,7 @@ public class User extends BaseEntity {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = Objects.requireNonNull(firstName, "Name cannot be null.");
     }
 
     public String getLastName() {
@@ -70,11 +75,11 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

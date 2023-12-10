@@ -1,5 +1,6 @@
 package com.jade.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -15,10 +16,12 @@ public class Booking extends BaseEntity {
     private User user;
     @Basic
     @Column(name = "check_in_date")
-    private Date checkInDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String checkInDate;
     @Basic
     @Column(name = "check_out_date")
-    private Date checkOutDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String checkOutDate;
     @Basic
     @Column(name = "price_per_day")
     private BigDecimal pricePerDay;
@@ -36,16 +39,19 @@ public class Booking extends BaseEntity {
     private Boolean isRefund;
     @Basic
     @Column(name = "cancel_date")
-    private Date cancel_date;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String cancelDate;
     @Basic
     @Column(name = "refund_paid")
     private BigDecimal refundPaid;
     @Basic
     @Column(name = "refund_date")
-    private Date refundDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String refundDate;
     @Basic
     @Column(name = "booking_date")
-    private Date bookingDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String bookingDate;
 
     public Property getProperty() {
         return property;
@@ -63,19 +69,19 @@ public class Booking extends BaseEntity {
         this.user = user;
     }
 
-    public Date getCheckInDate() {
+    public String getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(Date checkInDate) {
+    public void setCheckInDate(String checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public Date getCheckOutDate() {
+    public String getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(Date checkOutDate) {
+    public void setCheckOutDate(String checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
@@ -119,12 +125,12 @@ public class Booking extends BaseEntity {
         isRefund = refund;
     }
 
-    public Date getCancel_date() {
-        return cancel_date;
+    public String getCancelDate() {
+        return cancelDate;
     }
 
-    public void setCancel_date(Date cancel_date) {
-        this.cancel_date = cancel_date;
+    public void setCancelDate(String cancelDate) {
+        this.cancelDate = cancelDate;
     }
 
     public BigDecimal getRefundPaid() {
@@ -135,19 +141,19 @@ public class Booking extends BaseEntity {
         this.refundPaid = refundPaid;
     }
 
-    public Date getRefundDate() {
+    public String getRefundDate() {
         return refundDate;
     }
 
-    public void setRefundDate(Date refundDate) {
+    public void setRefundDate(String refundDate) {
         this.refundDate = refundDate;
     }
 
-    public Date getBookingDate() {
+    public String getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(String bookingDate) {
         this.bookingDate = bookingDate;
     }
 }

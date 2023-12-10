@@ -1,5 +1,6 @@
 package com.jade.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -33,10 +34,12 @@ public class Property extends BaseEntity {
     private Integer accommodateCount;
     @Basic
     @Column(name = "start_date")
-    private Date startDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String startDate;
     @Basic
     @Column(name = "end_date")
-    private Date endDate;
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String endDate;
     @Basic
     @Column(name = "price")
     private BigDecimal price;
@@ -105,19 +108,19 @@ public class Property extends BaseEntity {
         this.accommodateCount = accommodateCount;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
